@@ -44,3 +44,19 @@ const generateArray = (num) => Array.from({ length: num }, (v, k) => k + 1);
 const canvasReset = () => {
 	$pixelCanvas.innerHTML = "";
 };
+
+// Event Handler bindings
+
+$sizePicker.onsubmit = (event) => {
+	event.preventDefault();
+	const { gridHeight, gridWidth, gridColor } = getInputs();
+	STATE.gridHeight = gridHeight;
+	STATE.gridWidth = gridWidth;
+	STATE.gridColor = gridColor;
+	makeGrid(STATE);
+};
+
+$colorPicker.onchange = (event) => {
+	STATE.gridColor = event.target.value;
+	console.log(event.target.value);
+};
