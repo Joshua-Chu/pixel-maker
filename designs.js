@@ -63,6 +63,30 @@ $colorPicker.onchange = (event) => {
 
 /**
  * @description generates the grid for the canvas and attaches event handlers to each cell
+ * @param {number} gridHeight
+ * @param {number} gridWidth
+ */
+
+const generateGridTiles = (gridHeight, gridWidth) => {
+	const gridHeightArray = generateArray(gridHeight);
+	const gridWidthArray = generateArray(gridWidth);
+
+	gridHeightArray.map((row) => {
+		const trElement = document.createElement("tr");
+		trElement.id = row;
+
+		gridWidthArray.map((cell) => {
+			const tdElement = document.createElement("td");
+			tdElement.id = `${row}-${cell}`;
+			trElement.appendChild(tdElement);
+		});
+
+		$pixelCanvas.appendChild(trElement);
+	});
+};
+
+/**
+ * @description generates the grid for the canvas and attaches event handlers to each cell
  * @param STATE.gridHeight height of the grid
  * @param STATE.gridWidth  number of cells per row in the grid
  */
