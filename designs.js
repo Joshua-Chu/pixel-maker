@@ -86,6 +86,26 @@ const generateGridTiles = (gridHeight, gridWidth) => {
 };
 
 /**
+ * @description handles the toggling of the background color of each cell
+ * @param {Event} event
+ */
+
+const toggleCellBG = (event) => {
+	const cell = event.target;
+	const gridColor = STATE.gridColor;
+
+	if (cell.bgColor === "") {
+		cell.bgColor = gridColor;
+	} else {
+		if (STATE.gridColor !== cell.bgColor) {
+			cell.bgColor = gridColor;
+		} else {
+			cell.bgColor = "";
+		}
+	}
+};
+
+/**
  * @description generates the grid for the canvas and attaches event handlers to each cell
  * @param STATE.gridHeight height of the grid
  * @param STATE.gridWidth  number of cells per row in the grid
