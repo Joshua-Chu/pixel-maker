@@ -58,7 +58,6 @@ $sizePicker.onsubmit = (event) => {
 
 $colorPicker.onchange = (event) => {
 	STATE.gridColor = event.target.value;
-	console.log(event.target.value);
 };
 
 /**
