@@ -47,7 +47,7 @@ const canvasReset = () => {
 
 // Event Handler bindings
 
-$sizePicker.onsubmit = (event) => {
+$sizePicker.onsubmit = function (event) {
 	event.preventDefault();
 	const { gridHeight, gridWidth, gridColor } = getInputs();
 	STATE.gridHeight = gridHeight;
@@ -56,8 +56,34 @@ $sizePicker.onsubmit = (event) => {
 	makeGrid(STATE);
 };
 
-$colorPicker.onchange = (event) => {
+$colorPicker.onchange = function (event) {
 	STATE.gridColor = event.target.value;
+	console.log(event.target.value);
+};
+
+/**
+ * @description generates the grid rows for the pixel canvas
+ * @param {number} row
+ * @returns {Element} gridRow
+ */
+
+const createGridRow = (row) => {
+	const gridRow = document.createElement("tr");
+	gridRow.id = row;
+	return gridRow;
+};
+
+/**
+ * @description generates the grid cells for the pixel canvas
+ * @param {number} row
+ * @param {number} cell
+ * @returns {Element} gridCell
+ */
+
+const createGridCell = (row, cell) => {
+	const gridCell = document.createElement("td");
+	gridCell.id = `${row}-${cell}`;
+	return gridCell;
 };
 
 /**
@@ -71,15 +97,11 @@ const generateGridTiles = (gridHeight, gridWidth) => {
 	const gridWidthArray = generateArray(gridWidth);
 
 	gridHeightArray.map((row) => {
-		const trElement = document.createElement("tr");
-		trElement.id = row;
-
+		const trElement = createGridRow(row);
 		gridWidthArray.map((cell) => {
-			const tdElement = document.createElement("td");
-			tdElement.id = `${row}-${cell}`;
+			const tdElement = createGridCell(row, cell);
 			trElement.appendChild(tdElement);
 		});
-
 		$pixelCanvas.appendChild(trElement);
 	});
 };
