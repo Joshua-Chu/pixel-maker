@@ -60,3 +60,17 @@ $colorPicker.onchange = (event) => {
 	STATE.gridColor = event.target.value;
 	console.log(event.target.value);
 };
+
+/**
+ * @description generates the grid for the canvas and attaches event handlers to each cell
+ * @param STATE.gridHeight height of the grid
+ * @param STATE.gridWidth  number of cells per row in the grid
+ */
+
+const makeGrid = (STATE) => {
+	canvasReset();
+	generateGridTiles(STATE.gridHeight, STATE.gridWidth);
+	$pixelCanvas.addEventListener("click", toggleCellBG);
+};
+
+makeGrid(STATE);
